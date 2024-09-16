@@ -1,5 +1,4 @@
 # Team 13
-___
 Group Members:
 - Shaban Shala, V00
 - Isaak Wiebe, V00
