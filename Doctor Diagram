@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+actor "Doctor" as fc
+rectangle MisterED{
+  usecase "Log in/Log out" as UC1
+  usecase "Patients" as UC2
+  usecase "Schedule" as UC3
+  usecase "Pronouns" as UC4
+  usecase "Name" as UC4
+  usecase "Issue" as UC4
+  usecase "Allergies" as UC4
+}
+fc --> UC1
+fc --> UC2
+fc --> UC3
+UC2 .> UC4: extend
+@enduml
