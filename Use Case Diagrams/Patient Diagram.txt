@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+actor "Patient" as patient
+actor "Primary Care Clinic (GP)" as GP
+actor "Nurse/Clinician Hotline" as hotline
+actor "Emergency Department (ED)" as ED
+actor "Receptionist" as receptionist
+
+rectangle MisterEd {
+    usecase "Contact Reception" as UC1
+    usecase "Register for Virtual Triage" as UC2
+    usecase "Undergo Virtual Triage" as UC3
+    usecase "Receive Triage Result" as UC4
+    usecase "Wait at Home" as UC5
+    usecase "Receive Notification to Visit ED" as UC6
+    usecase "Visit Emergency Department" as UC7
+    usecase "Visit Primary Care Clinic" as UC8
+    usecase "Contact Nurse/Clinician Hotline" as UC9
+}
+
+patient --> UC1
+patient --> UC2
+patient --> UC3
+patient --> UC4
+patient --> UC5
+patient --> UC6
+patient --> UC7
+UC3 .> UC8: <<extend>>
+UC3 .> UC9: <<extend>>
+UC7 --> ED
+UC8 --> GP
+UC9 --> hotline
+UC1 --> receptionist
+@enduml
