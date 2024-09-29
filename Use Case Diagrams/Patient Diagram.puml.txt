@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+actor "Patient" as patient
+rectangle "Mister ED Healthcare System" {
+  rectangle "Account Management" {
+    usecase "Register Account" as UC1
+    usecase "Log In / Out" as UC2
+  }
+  rectangle "Health Profile" {
+    usecase "Update Health Profile" as UC3
+    usecase "View Medical History" as UC11
+  }
+  rectangle "Hospital Services" {
+    usecase "Find Nearby Hospitals" as UC4
+    usecase "View Hospital Wait Times" as UC5
+    usecase "View Waitlist Position" as UC9
+    usecase "Leave Waitlist" as UC10
+  }
+  rectangle "Virtual Triage" {
+    usecase "Register for Virtual Triage" as UC7
+    usecase "View Triage Results" as UC8
+  }
+  usecase "Call Nurse Hotline" as UC6
+}
+
+actor "Nurse" as nurse
+
+patient --> UC1
+patient --> UC2
+patient --> UC4
+patient --> UC6
+patient --> UC7
+patient --> UC9
+
+nurse -left-> UC6
+
+UC1 ..> UC3 : includes
+UC7 ..> UC8 : includes
+UC4 <|-- UC5 : extends
+UC9 <|-- UC10 : extends
+
+note top of UC6
+  Available for
+  medical advice
+end note
+
+note right of UC7
+  Patient enters symptoms
+  and waits for response
+end note
+@enduml
