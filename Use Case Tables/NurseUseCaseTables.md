@@ -1,5 +1,5 @@
 
-
+### Use Case 1: Conduct Initial Virtual Triage
 | Use case | Conduct Initial Virtual Triage |
 | :---- | :---- |
 | **Description** | The **Nurse** conducts a virtual triage by interviewing the **Patient** and documenting symptoms, observations, and other information in real-time into the system. The **Nurse** uses this information to decide the appropriate course of action. |
@@ -10,6 +10,8 @@
 | **Non-Functional** | \- The system should allow quick data entry and saving of information with minimal delay. |
 | **Issues** | \- What should happen when the **Patient** cannot provide enough information for a complete triage? |
 
+
+### Use Case 2: Monitor ED Waiting Queue
 | Use case | Monitor ED Waiting Queue |
 | :---- | :---- |
 | **Description** | The **Nurse** monitors the emergency department (ED) waiting queue to assess patient triage priorities and ensure timely care for those needing immediate attention, in coordination with the **Receptionist**. |
@@ -20,6 +22,8 @@
 | **Non-Functional** | \- The ED queue is updated in real-time. |
 | **Issues** | \- How should the system handle situations when the ED is overloaded and no beds are available? |
 
+
+### Use Case 3: Check Available Beds
 | Use case | Check Available Beds |
 | :---- | :---- |
 | **Description** | The **Nurse** checks the availability of beds in the ED to ensure that patients being called in for in-person visits can be accommodated. |
@@ -30,6 +34,8 @@
 | **Non-Functional** | \- The bed availability dashboard must refresh every 30 seconds. |
 | **Issues** | \- How should the system handle discrepancies between the system information and the actual conditions (e.g. a patient takes longer to leave a bed than expected)? |
 
+
+### Use Case 4: Monitor Patient Post-Medication
 | Use case | Monitor Patient Post-Medication |
 | :---- | :---- |
 | **Description** | The **Nurse** monitors the patient after they have received and taken medication provided by the **Pharmacist**, checking for any adverse reactions or complications and ensuring that the medication is having the desired effect. |
@@ -40,6 +46,8 @@
 | **Non-Functional** | \- The system must allow for quick updates to patient records and facilitate real-time communication with the **Doctor** and **Pharmacist**. |
 | **Issues** | \- How should the system handle cases where the patient does not adhere to the medication regimen? |
 
+
+### Use Case 5: Prepare Patient for Doctor Consultation
 | Use case | Prepare Patient for Doctor Consultation |
 | :---- | :---- |
 | **Description** | The **Nurse** prepares the patient for their consultation with the **Doctor** by ensuring that all necessary medical information is up to date and ready for review. |
