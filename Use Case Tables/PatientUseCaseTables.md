@@ -1,3 +1,86 @@
+# Use Cases
+### Actor: Patient
+**Use Case 1:** [Register Account](#use-case-1-register-account)<br>
+**Use Case 2:** [Log In / Out](#use-case-2-log-in--out)<br>
+**Use Case 3:** [Update Health Profile](#use-case-3-update-health-profile)<br>
+**Use Case 4:** [Find Nearby Hospitals](#use-case-4-find-nearby-hospitals)<br>
+**Use Case 5:** [View Hospital Wait Times](#use-case-5-view-hospital-wait-times)<br>
+**Use Case 6:** [Call Emergency Hotline](#use-case-6-call-emergency-hotline)<br>
+**Use Case 7:** [Register for Virtual Triage](#use-case-7-register-for-virtual-triage)<br>
+**Use Case 8:** [View Triage Results](#use-case-8-view-triage-results)<br>
+**Use Case 9:** [View Waitlist Position](#use-case-9-view-waitlist-position)<br>
+**Use Case 10:** [Leave Waitlist](#use-case-10-leave-waitlist)<br>
+**Use Case 11:** [View Medical History](#use-case-11-view-medical-history)<br>
+
+# Patient Diagram
+<div align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="
+        https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20DR.png
+      "
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="
+        https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20WH.png
+      "
+    />
+    <img
+      alt="PlantUML"
+      src="https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20WH.png"
+    />
+  </picture>
+</div>
+
+
+# PlantUML Script
+```plantuml
+@startuml
+left to right direction
+actor "Patient" as patient
+rectangle "Mister ED Healthcare System" {
+  rectangle "Account Management" {
+    usecase "Register Account" as UC1
+    usecase "Log In / Out" as UC2
+  }
+  rectangle "Health Profile" {
+    usecase "Update Health Profile" as UC3
+    usecase "View Medical History" as UC11
+  }
+  rectangle "Hospital Services" {
+    usecase "Find Nearby Hospitals" as UC4
+    usecase "View Hospital Wait Times" as UC5
+    usecase "View Waitlist Position" as UC9
+    usecase "Leave Waitlist" as UC10
+  }
+  usecase "Call Emergency Hotline" as UC6
+  rectangle "Virtual Triage" {
+    usecase "Register for Virtual Triage" as UC7
+    usecase "View Triage Results" as UC8
+  }
+}
+
+patient --> UC1
+patient --> UC2
+patient --> UC4
+patient --> UC6
+patient --> UC7
+patient --> UC9
+
+UC1 ..> UC3 : includes
+UC2 ..> UC11 : includes
+UC2 ..> UC3 : includes
+UC7 ..> UC8 : includes
+UC4 <|-- UC5 : extends
+UC9 <|-- UC10 : extends
+
+@enduml
+```
+
+# Use Case Tables
+
 ### Use Case 1: Register Account
 | **Field**                                   | **Description**                                                                                          |
 |---------------------------------------------|----------------------------------------------------------------------------------------------------------|
