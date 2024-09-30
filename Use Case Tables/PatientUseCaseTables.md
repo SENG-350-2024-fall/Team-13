@@ -17,15 +17,11 @@
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
-      srcset="
-        https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20DR.png
-      "
+      srcset="https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20DR.png"
     />
     <source
       media="(prefers-color-scheme: light)"
-      srcset="
-        https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20WH.png
-      "
+      srcset="https://github.com/SENG-350-2024-fall/Team-13/blob/main/Use%20Case%20Diagrams/Patient%20Diagram%20WH.png"
     />
     <img
       alt="PlantUML"
