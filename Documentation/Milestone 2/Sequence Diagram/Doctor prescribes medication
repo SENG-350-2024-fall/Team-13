@@ -1,0 +1,19 @@
+@startuml
+actor Doctor
+actor Patient
+actor Pharmacist
+entity System
+database database
+
+Doctor -> System: Log in
+System -> Doctor: success
+Doctor -> System: fill out precription
+System -> database: Save prescription
+database--> System: Prescription saved
+
+System -> Pharmacist: Notify pharmacist
+Pharmacist -> System: View prescription
+Pharmacist -> Patient: Notify that medication is ready
+
+Patient -> System: Receives notification
+@enduml
