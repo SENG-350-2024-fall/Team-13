@@ -1,0 +1,75 @@
+@startuml
+object patient
+patient : patient_id
+patient : name
+patient : DOB
+patient : Contact_Info
+patient : Medical_History
+patient : Symptoms
+
+object doctor
+doctor : name
+doctor : specialty
+doctor : contact_info
+
+object nurse
+nurse : Nurse_ID
+nurse : Name
+nurse : Contact_Info
+nurse : Shift
+
+object receptionist
+receptionist : Receptionist_ID 
+receptionist : Name
+receptionist : Contact_Info
+
+object pharmacist
+pharmacist : Pharmacist_ID 
+pharmacist : Name
+pharmacist : Contact_Info
+
+object triage
+triage : Triage_ID 
+triage : Symptoms
+triage : Medical_History
+triage : Triage_Result
+triage : Date
+
+object appointment
+appointment : Appointment_ID 
+appointment : Date
+appointment : Time
+appointment : Status
+
+object prescription
+prescription : Prescription_ID 
+prescription : Medication
+prescription : Dosage
+prescription : Instructions
+prescription : Date
+
+object labtest
+labtest : Test_ID 
+labtest : Test_Name
+labtest : Test_Result
+labtest : Date
+
+object notification
+notification : Notification_ID 
+notification : Message
+notification : Date
+notification : Status
+
+patient --{ triage
+doctor --{ triage
+nurse --{ triage
+patient --{ appointment
+doctor --{ appointment
+receptionist --{ appointment
+patient --{ prescription
+doctor--{ prescription
+pharmacist--{ prescription
+patient --{ labtest
+doctor --{ labtest
+patient --{ notification
+receptionist --{ notification
