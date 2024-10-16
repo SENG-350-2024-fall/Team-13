@@ -1,0 +1,97 @@
+@startuml
+class Pharmacist {
+  +viewPrescriptions()
+  +markPrescriptionAsFull()
+  +notifyPatientForPickup()
+}
+
+class Nurse {
+  +editTriageResults()
+  +checkAvailableBeds()
+  +checkWaitQueue()
+  +conductVirtualTriage()
+}
+
+class Person {
+  +name: str
+  +phoneNumber: str
+  +emailAddress: str
+}
+
+class Appointments {
+  +startTime: str
+  +endTime: str
+  +location: str
+  +scheduleAppointment()
+}
+
+class Schedule {
+  +date: str
+}
+
+class Patient {
+  +Issue: str
+  +Allergies: str
+  +currentMedication: str
+  +triageResults: str
+  +prescribedMedication: str
+  +labTests: str
+  +medicalAdvice: str
+  +checkQueue()
+  +checkSchedule()
+}
+
+class Doctor {
+  +Specialty: str
+  +reviewTriageResults()
+  +editTriageResults()
+  +prescribeMedication()
+  +orderLabTests()
+  +provideMedicalAdvice()
+}
+
+class Queue {
+  +addToQueue()
+  +removeFromQueue()
+}
+
+class Secretary {
+  +editAppointmentData()
+  +editPatientData()
+  +registerPatient()
+  +notifyPatientToAttendED()
+}
+
+class Lab {
+  +orderLabTest()
+  +viewLabResults()
+}
+
+Person <|-- Patient
+Person <|-- Doctor
+Person <|-- Nurse
+Person <|-- Pharmacist
+
+Doctor --> Patient
+Doctor --> Pharmacist
+Doctor --> Lab 
+
+Secretary --> Patient 
+Secretary --> Appointments
+
+Appointments --> Schedule
+Secretary --> Schedule
+
+Nurse --> Schedule
+Nurse --> Queue 
+Nurse --> Patient
+
+Pharmacist --> Patient
+Pharmacist --> Doctor
+Pharmacist --> Schedule
+
+Lab --> Patient
+Lab --> Doctor
+Patient --> Queue
+
+@enduml
