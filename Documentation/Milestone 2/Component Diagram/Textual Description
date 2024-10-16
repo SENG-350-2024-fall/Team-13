@@ -1,0 +1,2 @@
+Component Diagram
+This diagram shows the main parts of the system: the User Interface, Backend Systems, and External Services. It explains how the UI connects with systems like the Authentication System, Virtual Triage System, Health Record System, and ED Queue System. The Backend Systems manage storing and processing data, while External Services (like External Medical Services) add extra features, such as getting medical records. The Database is a key part that links to many systems and external services.
