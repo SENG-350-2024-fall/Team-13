@@ -1,27 +1,17 @@
 Register Account Collaboration Diagram
 This diagram shows the interaction between a Patient, the Registration System, and the Database. The Patient submits registration details to the Registration System, which validates and stores the information in the Database. Once confirmed, the Registration System informs the Patient that the account has been created.
 
-
-
 Log In/Log Out Collaboration Diagram
 This diagram shows the process where the Patient submits their credentials to the Authentication System, which verifies the credentials with the Database. After confirmation, the Authentication System informs the Patient whether the login was successful or not.
-
-
 
 Register for Virtual Triage Collaboration Diagram
 The Patient enters their symptoms into the Virtual Triage System, which forwards the information to the Nurse for processing. The Nurse reviews the symptoms, and the results are registered back in the Virtual Triage System before being sent to the Patient.
 
-
-
 View Triage Results Collaboration Diagram
 In this diagram, the Patient requests their triage results from the Virtual Triage System, which retrieves the results from the Doctor. The Doctor reviews and confirms the results, which are then sent back to the Patient.
 
-
-
 View Waitlist Position Collaboration Diagram
 This diagram shows the Patient checking their position on the ED waitlist through the ED Queue System. The system checks with the Receptionist, who updates the queue if needed, and then the system provides the updated waitlist position to the Patient.
-
-
 
 Update Health Profile Collaboration Diagram
 The Patient updates their health profile through the Health Record System, which validates and stores the updated information in the Database. After confirmation from the Database, the updated profile is communicated back to the Patient.
