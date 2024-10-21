@@ -1,0 +1,50 @@
+@startuml
+[*] --> LoginPrompt
+
+state LoginPrompt {
+    [*] --> WaitingForCredentials
+    WaitingForCredentials --> AuthenticatingCredentials : Enter Credentials
+    AuthenticatingCredentials --> WaitingForCredentials : Invalid Credentials
+}
+
+state Dashboard {
+    [*] --> ViewingQueue
+}
+
+state PrescriptionManagement {
+    [*] --> ReviewingPrescription
+    ReviewingPrescription --> QueryingPrescriber : Need Clarification
+    QueryingPrescriber --> ReviewingPrescription : Received Response
+    ReviewingPrescription --> PreparingMedication : Approved
+    PreparingMedication --> MedicationReady : Preparation Complete
+}
+
+state PatientInteraction {
+    [*] --> CalculatingWaitTime
+    CalculatingWaitTime --> NotifyingPatient : Medication Ready
+    CalculatingWaitTime --> UpdateWaitTime : Status Changed
+    UpdateWaitTime --> CalculatingWaitTime
+}
+
+state OTCPrescribing {
+    [*] --> ReviewingPatientHistory
+    ReviewingPatientHistory --> SelectingMedication
+    SelectingMedication --> EnteringDosage
+    EnteringDosage --> PreparingMedication
+}
+
+' Main Flow
+LoginPrompt --> Dashboard : Successful Login
+Dashboard --> LoginPrompt : Logout
+
+' Dashboard Connections
+Dashboard --> PrescriptionManagement : Handle Prescription
+Dashboard --> PatientInteraction : Patient Request
+Dashboard --> OTCPrescribing : OTC Medicine Request
+
+' Return Flows
+PrescriptionManagement --> Dashboard : Complete
+PatientInteraction --> Dashboard : Complete
+OTCPrescribing --> Dashboard : Complete
+
+@enduml

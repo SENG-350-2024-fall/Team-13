@@ -1,0 +1,55 @@
+@startuml
+[*] --> NotLoggedIn
+
+state NotLoggedIn {
+  [*] --> LoginPrompt
+  LoginPrompt --> AuthenticatingCredentials : Enter Credentials
+  AuthenticatingCredentials --> LoginPrompt : Invalid Credentials
+}
+
+state LoggedIn {
+  [*] --> Dashboard
+  
+  state PatientRegistration {
+    [*] --> GatheringInformation
+    GatheringInformation --> VerifyingInformation : Information Collected
+    VerifyingInformation --> AddingToWaitlist : Information Verified
+    VerifyingInformation --> RequestingMissingInfo : Information Incomplete
+    RequestingMissingInfo --> VerifyingInformation : Additional Info Received
+    AddingToWaitlist --> RegistrationComplete : Patient Added
+  }
+  
+  state AppointmentScheduling {
+    [*] --> CheckingDoctorSchedule
+    CheckingDoctorSchedule --> ProposingAppointmentSlots : Available Slots Found
+    ProposingAppointmentSlots --> ConfirmingAppointment : Slot Selected
+    ConfirmingAppointment --> UpdatingSchedule : Appointment Confirmed
+    ProposingAppointmentSlots --> CheckingDoctorSchedule : No Suitable Slot
+  }
+  
+  state PatientNotification {
+    [*] --> ComposingNotification
+    ComposingNotification --> SendingNotification : Notification Composed
+    SendingNotification --> ConfirmingDelivery : Notification Sent
+    ConfirmingDelivery --> ResendingNotification : Delivery Failed
+    ResendingNotification --> ConfirmingDelivery : Resend Attempt
+  }
+  
+  state WaitlistManagement {
+    [*] --> ViewingCurrentList
+    ViewingCurrentList --> UpdatingList : Changes Needed
+    UpdatingList --> ReorderingPriorities : Urgent Case
+    ReorderingPriorities --> ViewingCurrentList : List Updated
+    ViewingCurrentList --> RemovingPatient : Patient Seen
+  }
+  
+  Dashboard --> PatientRegistration : New Patient
+  Dashboard --> AppointmentScheduling : Schedule Appointment
+  Dashboard --> PatientNotification : Notify Patient
+  Dashboard --> WaitlistManagement : Manage Waitlist
+}
+
+NotLoggedIn --> LoggedIn : Successful Login
+LoggedIn --> NotLoggedIn : Logout
+
+@enduml

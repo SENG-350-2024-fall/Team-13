@@ -1,0 +1,59 @@
+@startuml
+[*] --> NotLoggedIn
+
+state NotLoggedIn {
+  [*] --> LoginPrompt
+  LoginPrompt --> AuthenticatingCredentials : Enter Credentials
+  AuthenticatingCredentials --> LoginPrompt : Invalid Credentials
+  LoginPrompt --> RegistrationForm : New User
+}
+
+state LoggedIn {
+  [*] --> Dashboard
+  
+  state AccountManagement {
+    [*] --> ViewingProfile
+    ViewingProfile --> UpdatingHealthProfile : Edit Profile
+    UpdatingHealthProfile --> ViewingProfile : Save Changes
+  }
+  
+  state HospitalServices {
+    [*] --> SearchingHospitals
+    SearchingHospitals --> ViewingHospitalDetails : Select Hospital
+    ViewingHospitalDetails --> ViewingWaitTimes : Check Wait Times
+  }
+  
+  state EmergencyServices {
+    [*] --> InitiatingEmergencyCall
+    InitiatingEmergencyCall --> OnEmergencyCall : Connect to Hotline
+  }
+  
+  state VirtualTriage {
+    [*] --> EnteringSymptoms
+    EnteringSymptoms --> AwaitingResults : Submit Symptoms
+    AwaitingResults --> ViewingTriageResults : Results Ready
+  }
+  
+  state WaitlistManagement {
+    [*] --> CheckingWaitlistPosition
+    CheckingWaitlistPosition --> LeavingWaitlist : Choose to Leave
+  }
+  
+  state MedicalRecords {
+    [*] --> ViewingMedicalHistory
+    ViewingMedicalHistory --> FilteringRecords : Search/Filter
+  }
+  
+  Dashboard --> AccountManagement
+  Dashboard --> HospitalServices
+  Dashboard --> EmergencyServices
+  Dashboard --> VirtualTriage
+  Dashboard --> WaitlistManagement
+  Dashboard --> MedicalRecords
+}
+
+NotLoggedIn --> LoggedIn : Successful Login
+LoggedIn --> NotLoggedIn : Logout
+RegistrationForm --> LoggedIn : Account Created
+
+@enduml

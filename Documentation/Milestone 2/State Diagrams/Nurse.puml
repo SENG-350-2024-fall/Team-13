@@ -1,0 +1,56 @@
+@startuml
+[*] --> NotLoggedIn
+
+state NotLoggedIn {
+  [*] --> LoginPrompt
+  LoginPrompt --> AuthenticatingCredentials : Enter Credentials
+  AuthenticatingCredentials --> LoginPrompt : Invalid Credentials
+}
+
+state LoggedIn {
+  [*] --> Dashboard
+  
+  state VirtualTriage {
+    [*] --> InterviewingPatient
+    InterviewingPatient --> DocumentingSymptoms : Gather Information
+    DocumentingSymptoms --> AssessingPriority : Complete Documentation
+    AssessingPriority --> DecidingAction : Priority Assessed
+  }
+  
+  state MonitoringED {
+    [*] --> ReviewingWaitingQueue
+    ReviewingWaitingQueue --> AdjustingPriorities : Queue Reviewed
+    AdjustingPriorities --> CoordinatingWithReceptionist : Priorities Adjusted
+  }
+  
+  state ManagingBeds {
+    [*] --> CheckingBedAvailability
+    CheckingBedAvailability --> UpdatingBedStatus : Bed Status Changed
+    UpdatingBedStatus --> CoordinatingAdmissions : Status Updated
+  }
+  
+  state PatientMonitoring {
+    [*] --> CheckingPatientStatus
+    CheckingPatientStatus --> DocumentingObservations : Patient Checked
+    DocumentingObservations --> ConsultingDoctor : Complications Detected
+    DocumentingObservations --> UpdatingRecords : No Complications
+  }
+  
+  state PreparingForConsultation {
+    [*] --> ReviewingPatientRecords
+    ReviewingPatientRecords --> UpdatingMissingInfo : Information Missing
+    UpdatingMissingInfo --> NotifyingDoctor : Patient Ready
+    ReviewingPatientRecords --> NotifyingDoctor : Records Complete
+  }
+  
+  Dashboard --> VirtualTriage : Start Triage
+  Dashboard --> MonitoringED : Check ED Queue
+  Dashboard --> ManagingBeds : Manage Beds
+  Dashboard --> PatientMonitoring : Monitor Patient
+  Dashboard --> PreparingForConsultation : Prepare for Doctor
+}
+
+NotLoggedIn --> LoggedIn : Successful Login
+LoggedIn --> NotLoggedIn : Logout
+
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+[*] --> LoginPrompt
+
+state LoginPrompt {
+    [*] --> WaitingForCredentials
+    WaitingForCredentials --> AuthenticatingCredentials : Enter Credentials
+    AuthenticatingCredentials --> WaitingForCredentials : Invalid Credentials
+}
+
+state Dashboard {
+    [*] --> ViewingPatientList
+    ViewingPatientList --> PatientSelected : Select Patient
+}
+
+state TriageManagement {
+    [*] --> ReviewingTriageResults
+    ReviewingTriageResults --> EditingTriageResults : Need Changes
+    EditingTriageResults --> ConfirmingTriageResults : Edits Complete
+    ReviewingTriageResults --> ConfirmingTriageResults : No Changes Needed
+    ConfirmingTriageResults --> TriageComplete : Results Confirmed
+}
+
+state TreatmentManagement {
+    [*] --> AssessingPatient
+    AssessingPatient --> OrderingLabTests : Tests Needed
+    AssessingPatient --> ProvidingMedicalAdvice : Advice Needed
+    AssessingPatient --> PrescribingMedication : Medication Needed
+    
+    OrderingLabTests --> ViewingLabResults : Test Results Ready
+    ViewingLabResults --> AssessingPatient : Review Complete
+    
+    ProvidingMedicalAdvice --> AssessingPatient : Advice Given
+    
+    state PrescribingMedication {
+        [*] --> WritingPrescription
+        WritingPrescription --> SendingToPharmacist : Prescription Complete
+        SendingToPharmacist --> PrescriptionComplete : Notification Sent
+    }
+}
+
+state AppointmentManagement {
+    [*] --> ViewingSchedule
+    ViewingSchedule --> CheckingAvailability : New Appointment
+    CheckingAvailability --> SchedulingAppointment : Slot Available
+    SchedulingAppointment --> AppointmentComplete : Appointment Scheduled
+}
+
+LoginPrompt --> Dashboard : Successful Login
+
+Dashboard --> TriageManagement : Review Triage
+Dashboard --> TreatmentManagement : Treat Patient
+Dashboard --> AppointmentManagement : Manage Appointments
+
+TriageComplete --> Dashboard
+PrescriptionComplete --> Dashboard
+AppointmentComplete --> Dashboard
+
+Dashboard --> LoginPrompt : Logout
+
+@enduml
