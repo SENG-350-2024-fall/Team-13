@@ -1,0 +1,24 @@
+@startuml
+title PatientContent Use Case Diagram
+
+actor Patient
+
+usecase "Health Summary" as UC_ViewHealthSummary
+usecase "Appointments" as UC_ViewAppointments
+usecase "Medical History" as UC_ViewMedications
+usecase "Recent Lab Results" as UC_ViewLabResults
+usecase "Virtual Triage" as UC_StartVirtualTriage
+usecase "Consultations" as con
+usecase "Health Resources" as hr
+usecase "Current Medication" as cm
+
+Patient --> UC_ViewHealthSummary
+Patient --> UC_ViewAppointments
+Patient --> UC_ViewMedications
+Patient --> UC_ViewLabResults
+Patient --> UC_StartVirtualTriage
+Patient --> con
+Patient --> hr
+Patient --> cm
+
+@enduml
